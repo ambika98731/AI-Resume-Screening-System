@@ -1,0 +1,21 @@
+DEGREES = [
+    "b.tech",
+    "btech",
+    "b.e",
+    "be",
+    "m.tech",
+    "mtech",
+    "m.e",
+    "me",
+    "b.sc",
+    "bsc",
+    "m.sc",
+    "msc",
+    "phd",
+    "doctor of philosophy",
+    "mba",
+    "bca",
+    "mca",
+    "b.com",
+    "m.com"
+]
