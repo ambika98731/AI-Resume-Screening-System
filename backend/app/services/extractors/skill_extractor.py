@@ -1,4 +1,5 @@
 from app.utils.skills import SKILLS
+import re
 
 
 def extract_skills(doc):
@@ -12,7 +13,11 @@ def extract_skills(doc):
 
     for skill in SKILLS:
 
-        if skill in text:
+        
+
+        pattern = r"\b" + re.escape(skill) + r"\b"
+
+        if re.search(pattern, text):
             found.add(skill)
 
     return sorted(found)

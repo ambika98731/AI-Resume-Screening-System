@@ -37,6 +37,7 @@ SKILLS = {
     "git",
     "github",
     "docker",
+    "redis",
 
     # Libraries
     "tensorflow",

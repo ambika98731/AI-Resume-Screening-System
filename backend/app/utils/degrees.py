@@ -17,5 +17,19 @@ DEGREES = [
     "bca",
     "mca",
     "b.com",
-    "m.com"
+    "m.com",
+    "Bachelor of Technology",
+    "B.Tech",
+    "Bachelor of Engineering",
+    "B.E.",
+    "Master of Technology",
+    "M.Tech",
+    "Bachelor of Science",
+    "B.Sc",
+    "Master of Science",
+    "M.Sc",
+    "Bachelor of Computer Applications",
+    "BCA",
+    "Master of Computer Applications",
+    "MCA"
 ]
