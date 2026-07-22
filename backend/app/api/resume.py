@@ -18,7 +18,7 @@ from app.services.resume_service import create_resume
 from app.models.resume import Resume
 from app.services.pdf_service import extract_text
 
-
+from app.services.parser_service import parse_resume
 
 
 
@@ -93,6 +93,8 @@ def upload_resume(
 
     text = extract_text(file_path)
 
+    parsed_resume = parse_resume(text)
+
     # Create schema object
     resume_data = ResumeCreate(
         name=name,
@@ -108,5 +110,7 @@ def upload_resume(
 
     return {
         "message": "Resume uploaded successfully",
-        "data": new_resume
+        "database": new_resume,
+
+        "parsed_resume": parsed_resume
     }
