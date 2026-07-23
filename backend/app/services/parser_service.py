@@ -17,6 +17,14 @@ def parse_resume(text: str):
 
     doc = nlp(text)
     sections = split_sections(text)
+
+    print("\n====== Sections ======\n")
+
+    for section, content in sections.items():
+        print(f"[{section}]")
+        print(content)
+        print("----------------------")
+
     resume = ResumeSchema()
     
 
@@ -35,6 +43,14 @@ def parse_resume(text: str):
         Education(**edu)
         for edu in education_data
     ]
+
+    print("\n========== Sections ==========")
+
+    for key, value in sections.items():
+        print(f"\n[{key}]")
+        print(value)
+
+    print("==============================")
 
     #"text_length": len(text)
 

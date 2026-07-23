@@ -1,5 +1,14 @@
 from app.utils.resume_sections import SECTION_HEADERS
 
+def normalize(text: str) -> str:
+    return (
+        text.lower()
+            .replace("&", " ")
+            .replace("/", " ")
+            .replace(":", "")
+            .strip()
+    )
+
 
 def split_sections(text: str):
     """
@@ -15,16 +24,10 @@ def split_sections(text: str):
     current_section = "general"
 
     # Normalize all keywords once
-    normalized_headers = {}
-
-    for section, keywords in SECTION_HEADERS.items():
-        normalized_headers[section] = [
-            keyword.lower()
-                   .replace("&", " ")
-                   .replace("/", " ")
-                   .strip()
-            for keyword in keywords
-        ]
+    normalized_headers = {
+        section: [normalize(keyword) for keyword in keywords]
+        for section, keywords in SECTION_HEADERS.items()
+    }
 
     # Process resume line by line
     for line in lines:
@@ -34,12 +37,7 @@ def split_sections(text: str):
         if not clean:
             continue
 
-        normalized_line = (
-            clean.lower()
-                 .replace("&", " ")
-                 .replace("/", " ")
-                 .strip()
-        )
+        normalized_line = normalize(clean)
 
         matched = False
 

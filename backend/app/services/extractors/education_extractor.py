@@ -2,28 +2,49 @@ from app.utils.degrees import DEGREES
 from app.utils.patterns import YEAR_PATTERN, CGPA_PATTERN
 
 
+def normalize(text: str) -> str:
+    """
+    Normalize text for reliable matching.
+    """
+    return (
+        text.lower()
+            .replace("&", " ")
+            .replace("/", " ")
+            .replace(":", "")
+            .strip()
+    )
+
+
 def extract_education(text: str):
     """
-    Extract education details from resume text.
+    Extract education details from the Education section
+    of a resume.
     """
 
     education = []
 
-    text_lower = text.lower()
+    normalized_text = normalize(text)
     lines = text.splitlines()
 
     degree = None
     institution = None
-    year = None
+    start_year = None
+    end_year = None
     cgpa = None
+    percentage = None
+    field_of_study = None
 
-    # Detect degree
+    # ----------------------------
+    # Detect Degree
+    # ----------------------------
     for d in DEGREES:
-        if d in text_lower:
-            degree = d.upper()
+        if normalize(d) in normalized_text:
+            degree = d
             break
 
-    # Detect institution
+    # ----------------------------
+    # Detect Institution
+    # ----------------------------
     for line in lines:
 
         clean = line.strip()
@@ -37,32 +58,37 @@ def extract_education(text: str):
             institution = clean
             break
 
-    # Detect year
-
+    # ----------------------------
+    # Detect Year
+    # ----------------------------
     year_match = YEAR_PATTERN.search(text)
 
     if year_match:
-        year = year_match.group()
+        end_year = year_match.group()
 
+    # ----------------------------
     # Detect CGPA
-
+    # ----------------------------
     cgpa_match = CGPA_PATTERN.search(text)
 
     if cgpa_match:
-        cgpa = cgpa_match.group(2)
+        cgpa = float(cgpa_match.group(2))
 
+    # ----------------------------
+    # Build Output
+    # ----------------------------
     if degree or institution:
 
-        education.append({
-
-            "degree": degree,
-
-            "institution": institution,
-
-            "year": year,
-
-            "cgpa": cgpa
-
-        })
+        education.append(
+            {
+                "degree": degree,
+                "field_of_study": field_of_study,
+                "institution": institution,
+                "start_year": start_year,
+                "end_year": end_year,
+                "cgpa": cgpa,
+                "percentage": percentage,
+            }
+        )
 
     return education

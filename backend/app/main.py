@@ -7,6 +7,8 @@ from app.models.resume import Resume
 
 from app.api.resume import router
 
+from app.api.matching import router as matching_router
+
 app = FastAPI(
     title="AI Resume Screening System",
     version="1.0.0"
@@ -14,7 +16,7 @@ app = FastAPI(
 
 app.include_router(router)
 # Create tables
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def home():
@@ -22,6 +24,7 @@ def home():
         "message": "Backend Running"
     }
 
+app.include_router(matching_router)
 
 @app.get("/db-test")
 def db_test():
