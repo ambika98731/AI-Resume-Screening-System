@@ -44,13 +44,7 @@ def parse_resume(text: str):
         for edu in education_data
     ]
 
-    print("\n========== Sections ==========")
-
-    for key, value in sections.items():
-        print(f"\n[{key}]")
-        print(value)
-
-    print("==============================")
+   
 
     #"text_length": len(text)
 
