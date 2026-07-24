@@ -9,6 +9,8 @@ from app.schemas.matching_request import MatchingRequest
 from app.services.interview_service import generate_interview_questions
 from app.services.recommendation_service import generate_recommendations
 
+from app.services.summary_service import generate_summary
+
 router = APIRouter()
 
 @router.post("/match")
@@ -24,10 +26,13 @@ def match(request: MatchingRequest):
 
     interview = generate_interview_questions(result)
 
+    summary = generate_summary(resume, result)
+
     return {
         "resume": resume,
         "job_description": jd,
         "matching": result,
         "recommendation": recommendation,
         "interview_questions": interview,
+        "summary": summary
     }
