@@ -13,6 +13,8 @@ from app.services.summary_service import generate_summary
 
 from app.services.improvement_service import generate_improvements
 
+from app.services.semantic_matching_service import calculate_semantic_similarity
+
 router = APIRouter()
 
 @router.post("/match")
@@ -23,6 +25,11 @@ def match(request: MatchingRequest):
     jd = parse_job_description(request.job_description)
 
     result = match_resume(resume, jd)
+
+    semantic_similarity = calculate_semantic_similarity(
+        request.resume_text,
+        request.job_description
+    )
 
     recommendation = generate_recommendations(result)
 
@@ -39,6 +46,7 @@ def match(request: MatchingRequest):
         "resume": resume,
         "job_description": jd,
         "matching": result,
+        "semantic_matching": semantic_similarity,
         "recommendation": recommendation,
         "interview_questions": interview,
         "summary": summary,
