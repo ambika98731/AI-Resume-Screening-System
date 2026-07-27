@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from sqlalchemy import text
 
-
+from fastapi.middleware.cors import CORSMiddleware
 from app.database.database import Base, engine
 from app.models.resume import Resume
 
@@ -12,6 +12,17 @@ from app.api.matching import router as matching_router
 app = FastAPI(
     title="AI Resume Screening System",
     version="1.0.0"
+)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(router)
