@@ -3,26 +3,31 @@ function SkillsCard({ matching }) {
 
     return (
         <div className="card">
+
             <h2>Skills Analysis</h2>
 
-                <div className="two-column">
+            <div className="two-column">
 
                 <div className="column">
 
                     <h3>✅ Matched Skills</h3>
 
-                    <ul>
+                    <div className="skill-container">
 
-                        {matching.matched_skills.map((skill) => (
-                            <li
-                                key={skill}
-                                className="skill-good"
-                            >
-                                {skill}
-                            </li>
-                        ))}
+                        {matching.matched_skills.length > 0 ? (
+                            matching.matched_skills.map((skill) => (
+                                <span
+                                    key={skill}
+                                    className="skill-chip skill-good"
+                                >
+                                    {skill}
+                                </span>
+                            ))
+                        ) : (
+                            <p>No matched skills.</p>
+                        )}
 
-                    </ul>
+                    </div>
 
                 </div>
 
@@ -30,23 +35,31 @@ function SkillsCard({ matching }) {
 
                     <h3>❌ Missing Skills</h3>
 
-                    <ul>
+                    <div className="skill-container">
 
-                        {matching.missing_skills.map((skill) => (
-                            <li
-                                key={skill}
-                                className="skill-bad"
-                            >
-                                {skill}
-                            </li>
-                        ))}
-                    </ul>
+                        {matching.missing_skills.length > 0 ? (
+                            matching.missing_skills.map((skill) => (
+                                <span
+                                    key={skill}
+                                    className="skill-chip skill-bad"
+                                >
+                                    {skill}
+                                </span>
+                            ))
+                        ) : (
+                            <p className="success-text">
+                                🎉 No missing skills!
+                            </p>
+                        )}
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
     );
 }
-
-    
 
 export default SkillsCard;

@@ -9,9 +9,32 @@ import InterviewCard from "./components/InterviewCard";
 import SummaryCard from "./components/SummaryCard";
 import ImprovementCard from "./components/ImprovementCard";
 
+import DownloadReportButton from "./components/DownloadReportButton";
+
 function App() {
 
     const [result, setResult] = useState(null);
+
+    const handleAnalyze = async (resumeFile, jdFile) => {
+      try {
+        const formData = new FormData();
+
+        formData.append("resume_file", resumeFile);
+        formData.append("jd_file", jdFile);
+
+        const response = await fetch("http://127.0.0.1:8000/match", {
+            method: "POST",
+            body: formData,
+        });
+
+        const data = await response.json();
+
+        setResult(data);
+
+      } catch (error) {
+          console.error(error);
+      }
+    };
 
     return (
        <div className="app">
@@ -23,7 +46,7 @@ function App() {
                 </p>
             </div>
 
-        <UploadForm setResult={setResult} />
+        <UploadForm onAnalyze={handleAnalyze} />
 
             {result && (
               <>
@@ -48,6 +71,9 @@ function App() {
 
                 <ImprovementCard
                   improvements={result.improvements}
+                />
+                <DownloadReportButton
+                  result={result}
                 />
               </>
           )}

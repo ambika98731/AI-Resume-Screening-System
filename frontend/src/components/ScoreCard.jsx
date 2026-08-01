@@ -6,23 +6,42 @@ function ScoreCard({ matching, semanticMatching }) {
 
             <h2>Resume Score</h2>
 
-            <h3>
-                Overall Match: {matching.overall_score}%
-            </h3>
+            <div className="score-section">
 
-            <progress
-                value={matching.overall_score}
-                max="100"
-            />
-            
-            <h3 style={{ marginTop: 30 }}>
-                Semantic Similarity: {semanticMatching.similarity_score}%
-            </h3>
+                <div className="score-header">
+                    <span>Overall Match</span>
+                    <span>{matching.overall_score}%</span>
+                </div>
 
-            <progress
-                value={semanticMatching.similarity_score}
-                max="100"
-            />          
+                <div className="progress-bar">
+                    <div
+                        className="progress-fill"
+                        style={{
+                            width: `${matching.overall_score}%`,
+                        }}
+                    ></div>
+                </div>
+
+            </div>
+
+            <div className="score-section">
+
+                <div className="score-header">
+                    <span>Semantic Similarity</span>
+                    <span>{semanticMatching.similarity_score}%</span>
+                </div>
+
+                <div className="progress-bar">
+                    <div
+                        className="progress-fill secondary"
+                        style={{
+                            width: `${semanticMatching.similarity_score}%`,
+                        }}
+                    ></div>
+                </div>
+
+            </div>
+
         </div>
     );
 }

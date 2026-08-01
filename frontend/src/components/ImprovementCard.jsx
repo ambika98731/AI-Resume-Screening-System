@@ -3,15 +3,16 @@ function ImprovementCard({ improvements }) {
 
     return (
         <div className="card">
-
             <h2>Resume Improvements</h2>
 
-            <ul>
+            <div className="improvement-list">
                 {improvements.suggestions.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <div key={index} className="improvement-item">
+                        <span className="improvement-icon">💡</span>
+                        <span>{item}</span>
+                    </div>
                 ))}
-            </ul>
-
+            </div>
         </div>
     );
 }

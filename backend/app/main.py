@@ -5,10 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database.database import Base, engine
 from app.models.resume import Resume
 
+from app.models.analysis import Analysis
+
 from app.api.resume import router
 
 from app.api.matching import router as matching_router
-
+from app.api.report import router as report_router
 app = FastAPI(
     title="AI Resume Screening System",
     version="1.0.0"
@@ -27,8 +29,11 @@ app.add_middleware(
 )
 
 app.include_router(router)
+
+
 # Create tables
 #Base.metadata.create_all(bind=engine)
+
 
 @app.get("/")
 def home():
@@ -37,6 +42,8 @@ def home():
     }
 
 app.include_router(matching_router)
+
+app.include_router(report_router)
 
 @app.get("/db-test")
 def db_test():

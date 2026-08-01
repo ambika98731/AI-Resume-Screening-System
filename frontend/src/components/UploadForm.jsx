@@ -1,54 +1,54 @@
 import { useState } from "react";
-import api from "../services/api";
 
-function UploadForm({ setResult }) {
-    const [resumeText, setResumeText] = useState("");
-    const [jobDescription, setJobDescription] = useState("");
+function UploadForm({ onAnalyze }) {
+    const [resumeFile, setResumeFile] = useState(null);
+    const [jdFile, setJdFile] = useState(null);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        try {
-            const response = await api.post("/match", {
-                resume_text: resumeText,
-                job_description: jobDescription,
-            });
-
-            setResult(response.data);
-        } catch (error) {
-            console.error(error);
-            alert("Failed to analyze resume.");
+        if (!resumeFile || !jdFile) {
+            alert("Please select both PDF files.");
+            return;
         }
+
+        onAnalyze(resumeFile, jdFile);
     };
 
     return (
-        <form className="card" onSubmit={handleSubmit}>
+        <div className="card">
 
-            <h2>Resume</h2>
+            <h2>Upload Documents</h2>
 
-            <textarea
-                className="textarea"
-                placeholder="Paste your resume here..."
-                rows="8"
-                value={resumeText}
-                onChange={(e) => setResumeText(e.target.value)}
-            />
+            <form onSubmit={handleSubmit}>
 
-            <h2>Job Description</h2>
+                <label>
+                    Resume (PDF)
+                </label>
 
-            <textarea
-                className="textarea"
-                placeholder="Paste the job description here..."
-                rows="8"
-                value={jobDescription}
-                onChange={(e) => setJobDescription(e.target.value)}
-            />
+                <input
+                    type="file"
+                    accept=".pdf"
+                    onChange={(e) => setResumeFile(e.target.files[0])}
+                />
 
-            <button className="button" type="submit">
-                Analyze Resume
-            </button>
+                <label>
+                    Job Description (PDF)
+                </label>
 
-        </form>
+                <input
+                    type="file"
+                    accept=".pdf"
+                    onChange={(e) => setJdFile(e.target.files[0])}
+                />
+
+                <button type="submit">
+                    Analyze Resume
+                </button>
+
+            </form>
+
+        </div>
     );
 }
 

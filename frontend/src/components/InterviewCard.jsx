@@ -6,17 +6,40 @@ function InterviewCard({ interview }) {
 
             <h2>Interview Questions</h2>
 
-            {Object.entries(interview.questions).map(([skill, questions]) => (
-                <div key={skill}>
-                    <h3>{skill.toUpperCase()}</h3>
+            <div className="interview-grid">
 
-                    <ol>
-                        {questions.map((q, index) => (
-                            <li key={index}>{q}</li>
-                        ))}
-                    </ol>
-                </div>
-            ))}
+                {Object.entries(interview.questions).map(([skill, questions]) => (
+
+                    <div
+                        key={skill}
+                        className="interview-skill-card"
+                    >
+
+                        <h3 className="interview-skill-title">
+                            {skill.toUpperCase()}
+                        </h3>
+
+                        <ol className="question-list">
+
+                            {questions.map((q, index) => (
+
+                                <li
+                                    key={index}
+                                    className="question-item"
+                                >
+                                    {q}
+                                </li>
+
+                            ))}
+
+                        </ol>
+
+                    </div>
+
+                ))}
+
+            </div>
+
         </div>
     );
 }
