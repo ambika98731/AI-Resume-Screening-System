@@ -14,13 +14,16 @@ function App() {
     const [result, setResult] = useState(null);
 
     return (
-        <div>
+       <div className="app">
 
-            <h1>AI Resume Screening System</h1>
+            <div className="header">
+                <h1>AI Resume Screening System</h1>
+                <p>
+                    Intelligent Resume Analysis using FastAPI, React and NLP
+                </p>
+            </div>
 
-            <UploadForm setResult={setResult} />
-
-            <hr />
+        <UploadForm setResult={setResult} />
 
             {result && (
               <>

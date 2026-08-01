@@ -2,24 +2,17 @@ function InterviewCard({ interview }) {
     if (!interview || !interview.questions) return null;
 
     return (
-        <div
-            style={{
-                border: "1px solid #ddd",
-                borderRadius: "10px",
-                padding: "20px",
-                marginTop: "20px",
-                backgroundColor: "#ffffff",
-            }}
-        >
+        <div className="card">
+
             <h2>Interview Questions</h2>
 
             {Object.entries(interview.questions).map(([skill, questions]) => (
-                <div key={skill} style={{ marginBottom: "20px" }}>
+                <div key={skill}>
                     <h3>{skill.toUpperCase()}</h3>
 
                     <ol>
-                        {questions.map((question, index) => (
-                            <li key={index}>{question}</li>
+                        {questions.map((q, index) => (
+                            <li key={index}>{q}</li>
                         ))}
                     </ol>
                 </div>

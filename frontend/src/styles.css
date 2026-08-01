@@ -1,0 +1,248 @@
+/* ===========================
+   Global Styles
+=========================== */
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --background: #f4f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --secondary: #6b7280;
+    --success: #15803d;
+    --danger: #dc2626;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+#root {
+    width: 100%;
+}
+
+/* ===========================
+   Main Layout
+=========================== */
+
+.app {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 56px;
+    line-height: 1.2;
+}
+
+.header p {
+    margin-top: 15px;
+    color: var(--secondary);
+    font-size: 22px;
+}
+
+/* ===========================
+   Cards
+=========================== */
+
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+
+    max-width: 900px;
+    margin: 30px auto;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+
+    animation: fade .4s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, .12);
+}
+
+.card h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    color: var(--text);
+    font-size: 26px;
+}
+
+/* ===========================
+   Two Column Layout
+=========================== */
+
+.two-column {
+    display: flex;
+    gap: 25px;
+}
+
+.column {
+    flex: 1;
+}
+
+/* ===========================
+   Skills
+=========================== */
+
+.skill-good {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.skill-bad {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* ===========================
+   Lists
+=========================== */
+
+ul,
+ol {
+    padding-left: 22px;
+    line-height: 1.8;
+}
+
+/* ===========================
+   Progress Bars
+=========================== */
+
+progress {
+    width: 100%;
+    height: 18px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ===========================
+   Upload Form
+=========================== */
+
+.textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 16px;
+    margin-bottom: 30px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-family: inherit;
+
+    background: white;
+    color: var(--text);
+
+    resize: vertical;
+
+    outline: none;
+    transition: .25s;
+}
+
+.textarea::placeholder {
+    color: #9ca3af;
+}
+
+.textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+.button {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--primary);
+    color: white;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .25s,
+        transform .25s;
+}
+
+.button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* ===========================
+   Animation
+=========================== */
+
+@keyframes fade {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   Responsive Design
+=========================== */
+
+@media (max-width: 768px) {
+
+    .app {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 38px;
+    }
+
+    .header p {
+        font-size: 18px;
+    }
+
+    .two-column {
+        flex-direction: column;
+    }
+
+    .card {
+        max-width: 100%;
+    }
+
+    .button {
+        font-size: 16px;
+    }
+}

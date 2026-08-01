@@ -24,6 +24,12 @@ def match(request: MatchingRequest):
 
     jd = parse_job_description(request.job_description)
 
+    print("\n===== RESUME EDUCATION =====")
+    print(resume.education)
+
+    print("\n===== JD EDUCATION =====")
+    print(jd.education)
+
     result = match_resume(resume, jd)
 
     semantic_similarity = calculate_semantic_similarity(

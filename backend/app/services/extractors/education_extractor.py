@@ -1,3 +1,5 @@
+import re
+
 from app.utils.degrees import DEGREES
 from app.utils.patterns import YEAR_PATTERN, CGPA_PATTERN
 
@@ -37,7 +39,7 @@ def extract_education(text: str):
     # ----------------------------
     # Detect Degree
     # ----------------------------
-    for d in DEGREES:
+    for d in sorted(DEGREES, key=len, reverse=True):
         if normalize(d) in normalized_text:
             degree = d
             break
@@ -64,7 +66,13 @@ def extract_education(text: str):
     year_match = YEAR_PATTERN.search(text)
 
     if year_match:
-        end_year = year_match.group()
+        years = re.findall(r"\d{4}", year_match.group())
+
+        if len(years) == 2:
+            start_year = int(years[0])
+            end_year = int(years[1])
+        elif len(years) == 1:
+            end_year = int(years[0])
 
     # ----------------------------
     # Detect CGPA

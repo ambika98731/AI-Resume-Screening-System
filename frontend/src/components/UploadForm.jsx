@@ -22,12 +22,14 @@ function UploadForm({ setResult }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="card" onSubmit={handleSubmit}>
 
             <h2>Resume</h2>
 
             <textarea
-                rows="12"
+                className="textarea"
+                placeholder="Paste your resume here..."
+                rows="8"
                 value={resumeText}
                 onChange={(e) => setResumeText(e.target.value)}
             />
@@ -35,14 +37,14 @@ function UploadForm({ setResult }) {
             <h2>Job Description</h2>
 
             <textarea
-                rows="12"
+                className="textarea"
+                placeholder="Paste the job description here..."
+                rows="8"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
             />
 
-            <br /><br />
-
-            <button type="submit">
+            <button className="button" type="submit">
                 Analyze Resume
             </button>
 

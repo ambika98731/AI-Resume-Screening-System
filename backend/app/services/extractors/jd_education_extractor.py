@@ -9,7 +9,7 @@ def extract_education_requirement(text: str) -> str | None:
 
     text = text.lower()
 
-    for degree in DEGREES:
+    for degree in sorted(DEGREES, key=len, reverse=True): 
         if degree.lower() in text:
             return degree
 
