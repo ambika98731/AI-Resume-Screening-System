@@ -17,6 +17,11 @@ def generate_recommendations(
             f"Strong knowledge of {skill}"
         )
 
+    if matching.experience_match:
+        result.strengths.append(
+            "Meets the required work experience."
+    )
+
     # -------------------------
     # Weaknesses
     # -------------------------
@@ -35,6 +40,11 @@ def generate_recommendations(
             f"Learn {skill} to improve your resume."
         )
 
+    if not matching.experience_match:
+        result.weaknesses.append(
+            "Work experience does not meet the job requirement."
+    )
+
     # -------------------------
     # Education Recommendation
     # -------------------------
@@ -50,7 +60,7 @@ def generate_recommendations(
 
     if not matching.experience_match:
         result.recommendations.append(
-            "Gain more relevant work experience."
-        )
+            "Gain more relevant work experience or highlight internships, freelance work, or major projects relevant to the role."
+    )
 
     return result

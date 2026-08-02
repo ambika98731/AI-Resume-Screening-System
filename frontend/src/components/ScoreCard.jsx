@@ -42,6 +42,20 @@ function ScoreCard({ matching, semanticMatching }) {
 
             </div>
 
+            <div className="score-section">
+
+                <div className="score-header">
+                    <span>Experience Requirement</span>
+
+                    <span>
+                        {matching.experience_match
+                            ? "✅ Matched"
+                            : "❌ Not Matched"}
+                    </span>
+                </div>
+
+            </div>
+
         </div>
     );
 }

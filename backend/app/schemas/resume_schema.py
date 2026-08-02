@@ -10,3 +10,5 @@ class ResumeSchema(BaseModel):
     education: list[Education] = Field(default_factory=list)
 
     skills: list[str] = Field(default_factory=list)
+
+    experience: int | None = None

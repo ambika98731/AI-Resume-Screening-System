@@ -9,6 +9,10 @@ from app.services.extractors.education_extractor import extract_education
 
 from app.services.splitters.section_splitter import split_sections
 
+from app.services.extractors.resume_experience_extractor import (
+    extract_resume_experience,
+)
+
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -44,6 +48,10 @@ def parse_resume(text: str):
         for edu in education_data
     ]
 
+    resume.experience = extract_resume_experience(
+        sections.get("experience", "")
+    )
+
    
 
     #"text_length": len(text)
@@ -51,6 +59,7 @@ def parse_resume(text: str):
     #"num_sentences": len(list(doc.sents))
 
     #"num_tokens": len(doc)
-
+    print("\n===== RESUME EXPERIENCE =====")
+    print(resume.experience)
     return resume
 

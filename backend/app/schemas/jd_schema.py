@@ -6,7 +6,7 @@ class JDSchema(BaseModel):
 
     skills: list[str] = Field(default_factory=list)
 
-    experience: str | None = None
+    experience: int | None = None
 
     education: str | None = None
 
