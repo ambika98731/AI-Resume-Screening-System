@@ -1,4 +1,7 @@
 from app.schemas.project import Project
+from app.services.extractors.project_technology_extractor import (
+    extract_project_technologies,
+)
 
 
 def extract_projects(text: str):
@@ -28,6 +31,13 @@ def extract_projects(text: str):
 
         else:
             current_project.description = line
+
+            current_project.technologies = (
+                extract_project_technologies(
+                    current_project.title + " " + current_project.description
+                )
+            )
+
             projects.append(current_project)
             current_project = None
 

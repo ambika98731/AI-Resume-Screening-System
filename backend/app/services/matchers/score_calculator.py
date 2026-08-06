@@ -1,13 +1,17 @@
 def calculate_overall_score(
     skill_score: float,
+    project_score: float,
     education_match: bool,
     experience_match: bool,
 ) -> float:
 
     score = 0
 
-    # Skills → 70%
-    score += skill_score * 0.7
+    # Skills → 50%
+    score += skill_score * 0.50
+
+    # Projects → 20%
+    score += project_score * 0.20
 
     # Education → 15%
     if education_match:

@@ -9,6 +9,13 @@ class MatchingSchema(BaseModel):
 
     skill_score: float = 0
 
+    # Project Matching
+    matched_project_skills: list[str] = Field(default_factory=list)
+
+    missing_project_skills: list[str] = Field(default_factory=list)
+
+    project_score: float = 0
+
     education_match: bool = False
 
     experience_match: bool = False

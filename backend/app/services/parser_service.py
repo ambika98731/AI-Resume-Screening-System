@@ -65,7 +65,8 @@ def parse_resume(text: str):
     print("\n===== PROJECTS =====")
 
     for project in resume.projects:
-        print(project)
+        print(project.title)
+        print(project.technologies)
 
     #"text_length": len(text)
 

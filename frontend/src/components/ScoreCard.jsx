@@ -42,6 +42,26 @@ function ScoreCard({ matching, semanticMatching }) {
 
             </div>
 
+            
+
+            <div className="score-section">
+
+                <div className="score-header">
+                    <span>Project Match</span>
+                    <span>{matching.project_score}%</span>
+                </div>
+
+                <div className="progress-bar">
+                    <div
+                        className="progress-fill secondary"
+                        style={{
+                            width: `${matching.project_score}%`,
+                        }}
+                    ></div>
+                </div>
+
+            </div>
+
             <div className="score-section">
 
                 <div className="score-header">
@@ -58,6 +78,7 @@ function ScoreCard({ matching, semanticMatching }) {
 
         </div>
     );
+    
 }
 
 export default ScoreCard;
