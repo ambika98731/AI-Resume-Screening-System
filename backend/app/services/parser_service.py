@@ -13,6 +13,9 @@ from app.services.extractors.resume_experience_extractor import (
     extract_resume_experience,
 )
 
+from app.services.extractors.personal_info_extractor import extract_personal_info
+
+from app.services.extractors.project_extractor import extract_projects
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -30,6 +33,8 @@ def parse_resume(text: str):
         print("----------------------")
 
     resume = ResumeSchema()
+
+    resume.personal_info = extract_personal_info(doc)
     
 
     
@@ -52,7 +57,15 @@ def parse_resume(text: str):
         sections.get("experience", "")
     )
 
-   
+
+    resume.projects = extract_projects(
+    sections.get("projects", "")
+    )
+
+    print("\n===== PROJECTS =====")
+
+    for project in resume.projects:
+        print(project)
 
     #"text_length": len(text)
 

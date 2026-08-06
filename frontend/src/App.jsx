@@ -10,6 +10,9 @@ import SummaryCard from "./components/SummaryCard";
 import ImprovementCard from "./components/ImprovementCard";
 
 import DownloadReportButton from "./components/DownloadReportButton";
+import PersonalInfoCard from "./components/PersonalInfoCard";
+
+import ProjectsCard from "./components/ProjectsCard";
 
 function App() {
 
@@ -50,6 +53,14 @@ function App() {
 
             {result && (
               <>
+                <PersonalInfoCard
+                  personalInfo={result.resume.personal_info}
+                />
+
+                <ProjectsCard
+                  projects={result.resume.projects}
+                />
+
                 <ScoreCard
                   matching={result.matching}
                   semanticMatching={result.semantic_matching}

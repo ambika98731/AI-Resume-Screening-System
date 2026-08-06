@@ -20,7 +20,9 @@ SECTION_HEADERS = {
         "projects",
         "project",
         "academic projects",
-        "projects undertaken"
+        "projects undertaken",
+        "personal projects",
+        "key projects",
     ],
 
     "skills": [
